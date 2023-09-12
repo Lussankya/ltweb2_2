@@ -21,9 +21,15 @@ public class SalaryGradeController {
             preparedStatement.setFloat(2, salaryGrade.getHighSalary());
             preparedStatement.setFloat(3, salaryGrade.getLowSalary());
 
-            preparedStatement.executeUpdate();
+            int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Salary Grade added successfully!");
+            } else {
+                System.out.println("Error: Failed to add Salary Grade.");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("Error: SQL Exception occurred.");
         }
     }
 

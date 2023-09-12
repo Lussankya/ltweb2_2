@@ -78,7 +78,7 @@ public class SalaryGradeView {
         salaryGrade.setLowSalary(scanner.nextFloat());
 
         salaryGradeController.addSalaryGrade(salaryGrade);
-        System.out.println("Salary Grade added successfully!");
+
     }
 
     private static void editSalaryGrade(Scanner scanner) {

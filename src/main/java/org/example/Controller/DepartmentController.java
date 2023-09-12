@@ -22,9 +22,15 @@ public class DepartmentController {
             preparedStatement.setString(3, department.getDeptNo());
             preparedStatement.setString(4, department.getLocation());
 
-            preparedStatement.executeUpdate();
+            int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Department added successfully!");
+            } else {
+                System.out.println("Error: Failed to add Department.");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("Error: SQL Exception occurred.");
         }
     }
 
@@ -39,9 +45,15 @@ public class DepartmentController {
             preparedStatement.setString(3, department.getLocation());
             preparedStatement.setInt(4, department.getDeptId());
 
-            preparedStatement.executeUpdate();
+            int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Department updated successfully!");
+            } else {
+                System.out.println("Error: Failed to update Department.");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("Error: SQL Exception occurred.");
         }
     }
 

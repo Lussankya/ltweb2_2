@@ -27,10 +27,15 @@ public class TimekeeperController {
             preparedStatement.setTimestamp(2, new Timestamp(timekeeper.getDate_Time().getTime()));
             preparedStatement.setString(3, timekeeper.getIn_Out());
             preparedStatement.setBigDecimal(4, new BigDecimal(timekeeper.getEmpId()));
-
-            preparedStatement.executeUpdate();
+            int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Timekeeper added successfully!");
+            } else {
+                System.out.println("Error: Failed to add timekeeper.");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("Error: SQL Exception occurred.");
         }
     }
 
@@ -50,9 +55,15 @@ public class TimekeeperController {
             preparedStatement.setString(2, timekeeper.getIn_Out());
             preparedStatement.setString(3, timekeeper.getTimekeeper_Id());
 
-            preparedStatement.executeUpdate();
+            int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Timekeeper updated successfully!");
+            } else {
+                System.out.println("Error: Failed to update Timekeeper.");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("Error: SQL Exception occurred.");
         }
     }
 

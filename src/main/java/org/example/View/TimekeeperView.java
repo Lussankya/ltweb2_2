@@ -84,14 +84,14 @@ public class TimekeeperView {
             return;
         }
 
-        System.out.print("In/Out (e.g., 'In' or 'Out'): ");
+        System.out.print("In/Out (e.g., 'I' or 'O'): ");
         timekeeper.setIn_Out(scanner.nextLine());
 
         System.out.print("Employee ID: ");
         timekeeper.setEmpId(scanner.nextBigInteger());
 
         timekeeperController.addTimekeeper(timekeeper);
-        System.out.println("Timekeeper added successfully!");
+
     }
 
     private static void editTimekeeper(Scanner scanner) {
@@ -118,11 +118,11 @@ public class TimekeeperView {
         }
 
 
-        System.out.print("In/Out (e.g., 'In' or 'Out'): ");
+        System.out.print("In/Out (e.g., 'I' or 'O'): ");
         existingTimekeeper.setIn_Out(scanner.nextLine());
 
         timekeeperController.updateTimekeeper(existingTimekeeper);
-        System.out.println("Timekeeper updated successfully!");
+
     }
 
     private static void deleteTimekeeper(Scanner scanner) {

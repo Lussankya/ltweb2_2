@@ -73,11 +73,11 @@ public class EmployeeView {
 
         System.out.print("Employee ID: ");
         employee.setEmpId(scanner.nextInt());
-        scanner.nextLine(); // Consume the newline character
+        scanner.nextLine();
 
         System.out.print("Department ID: ");
         employee.setDeptId(scanner.nextInt());
-        scanner.nextLine(); // Consume the newline character
+        scanner.nextLine();
 
         System.out.print("Employee Name: ");
         employee.setEmpName(scanner.nextLine());
@@ -96,7 +96,7 @@ public class EmployeeView {
             return;
         }
 
-        // Additional properties can be set similarly
+
         employee.setImage(null);
 
         System.out.print("Job: ");
@@ -104,20 +104,16 @@ public class EmployeeView {
 
         System.out.print("Manager ID: ");
         BigDecimal mngId = scanner.nextBigDecimal();
-        scanner.nextLine(); // Consume the newline character
+        scanner.nextLine();
         employee.setMngId(mngId);
 
         System.out.print("Salary: ");
         employee.setSalary(scanner.nextFloat());
-        scanner.nextLine(); // Consume the newline character
+        scanner.nextLine();
+        employeeController.addEmployee(employee);
 
 
-        if (!employeeController.addEmployee(employee)) {
-            System.out.println("Error: Failed to add employee.");
-        } else {
-            System.out.println("Employee added successfully!");
-        }
-        System.out.println("Employee added successfully!");
+
     }
 
     private static void editEmployee(Scanner scanner) {
@@ -173,13 +169,9 @@ public class EmployeeView {
         float newSalary = scanner.nextFloat();
         scanner.nextLine(); // Consume the newline character
         existingEmployee.setSalary(newSalary);
+        employeeController.updateEmployee(existingEmployee);
 
 
-        if (!employeeController.updateEmployee(existingEmployee)) {
-            System.out.println("Error: Failed to update employee.");
-        } else {
-            System.out.println("Employee updated successfully!");
-        }
 
     }
 

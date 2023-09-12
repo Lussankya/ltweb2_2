@@ -10,17 +10,17 @@ import static org.example.utils.DatabaseConnection.getConnection;
 
 public class EmployeeController {
 
-    public static boolean addEmployee(Employee employee) {
+    public static void addEmployee(Employee employee) {
         // Check if the department ID exists
         if (!isDepartmentIdExists(employee.getDeptId())) {
             System.out.println("Error: Department with ID " + employee.getDeptId() + " does not exist.");
-            return false;
+            return ;
         }
 
         // Check if the salary is within the valid range
         if (!isSalaryInRange(employee.getSalary())) {
             System.out.println("Error: Employee salary is not within the valid range.");
-            return false;
+            return ;
         }
 
         try (Connection connection = getConnection();
@@ -43,38 +43,32 @@ public class EmployeeController {
             preparedStatement.setString(7, employee.getJob());
             preparedStatement.setBigDecimal(8, employee.getMngId());
             preparedStatement.setFloat(9, employee.getSalary());
-            int affectedRows = preparedStatement.executeUpdate();
-
-            // Retrieve the generated employee ID
-            ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
-            if (generatedKeys.next()) {
-                int generatedEmpId = generatedKeys.getInt(1);
-                System.out.println("Employee added successfully! Employee ID: " + generatedEmpId);
-                return true; // Return true to indicate success
+            int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Employee added successfully!");
             } else {
-                System.out.println("Error: Failed to retrieve generated employee ID.");
-                return false; // Return false to indicate failure
+                System.out.println("Error: Failed to add Employee.");
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            return false; // Return false to indicate failure
+            System.out.println("Error: SQL Exception occurred.");
         }
     }
 
 
 
     // Update an existing employee
-    public static boolean updateEmployee(Employee employee) {
+    public static void updateEmployee(Employee employee) {
         // Check if the department ID exists
         if (!isDepartmentIdExists(employee.getDeptId())) {
             System.out.println("Error: Department with ID " + employee.getDeptId() + " does not exist.");
-            return false;
+            return ;
         }
 
         // Check if the salary is within the valid range
         if (!isSalaryInRange(employee.getSalary())) {
             System.out.println("Error: Employee salary is not within the valid range.");
-            return false;
+            return ;
         }
 
         try (Connection connection = getConnection();
@@ -97,21 +91,15 @@ public class EmployeeController {
             preparedStatement.setBigDecimal(7, employee.getMngId());
             preparedStatement.setFloat(8, employee.getSalary());
             preparedStatement.setInt(9, employee.getEmpId());
-            int affectedRows = preparedStatement.executeUpdate();
-
-            // Retrieve the generated employee ID
-            ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
-            if (generatedKeys.next()) {
-                int generatedEmpId = generatedKeys.getInt(1);
-                System.out.println("Employee added successfully! Employee ID: " + generatedEmpId);
-                return true; // Return true to indicate success
+            int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Employee updated successfully!");
             } else {
-                System.out.println("Error: Failed to retrieve generated employee ID.");
-                return false; // Return false to indicate failure
+                System.out.println("Error: Failed to update Employee.");
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            return false; // Return false to indicate failure
+            System.out.println("Error: SQL Exception occurred.");
         }
     }
 

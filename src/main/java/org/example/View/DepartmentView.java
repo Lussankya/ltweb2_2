@@ -84,7 +84,7 @@ public class DepartmentView {
         department.setLocation(scanner.nextLine());
 
         departmentController.addDepartment(department);
-        System.out.println("Department added successfully!");
+
     }
 
     private static void editDepartment(Scanner scanner) {
@@ -112,7 +112,7 @@ public class DepartmentView {
         existingDepartment.setLocation(newLocation);
 
         departmentController.updateDepartment(existingDepartment);
-        System.out.println("Department updated successfully!");
+
     }
 
     private static void deleteDepartment(Scanner scanner) {
